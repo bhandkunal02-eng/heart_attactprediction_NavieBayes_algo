@@ -189,7 +189,7 @@ def render_prediction(artifacts: ModelArtifacts) -> None:
                             format_func=lambda value, key=feature: (
                                 f"{value:g} - {CODE_LABELS[key][int(value)]}"
                                 if key in CODE_LABELS and int(value) in CODE_LABELS[key]
-                                else f"{value:g} · source code"
+                                else f"{value:g}"
                             ),
                         )
         submitted = st.form_submit_button("Run model prediction", type="primary")

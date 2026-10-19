@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pytest
+from pathlib import Path
 
 from model import (
     DATA_PATH,
@@ -55,6 +56,24 @@ def test_documented_sex_and_chest_pain_labels_match_source_codes(artifacts):
     }
     assert set(artifacts.feature_values["sex"]) == {0, 1}
     assert set(artifacts.feature_values["cp"]) == {0, 1, 2, 3}
+
+
+def test_other_category_choices_show_values_without_source_code_suffix():
+    from streamlit.testing.v1 import AppTest
+
+    app = AppTest.from_file(Path(__file__).resolve().parents[1] / "app.py").run(timeout=30)
+    app.radio[0].set_value("Try the model").run(timeout=30)
+    selectboxes = {widget.label: widget.options for widget in app.selectbox}
+    assert selectboxes["Fasting blood sugar code"] == ["0", "1"]
+    assert selectboxes["Resting ECG code"] == ["0", "1", "2"]
+    assert selectboxes["Sex"] == ["0 - Female", "1 - Male"]
+    assert selectboxes["Chest-pain type"] == [
+        "0 - Typical angina",
+        "1 - Atypical angina",
+        "2 - Non-anginal pain",
+        "3 - Asymptomatic",
+    ]
+    assert not app.exception
 
 
 def test_prediction_uses_model_native_probabilities(artifacts):
