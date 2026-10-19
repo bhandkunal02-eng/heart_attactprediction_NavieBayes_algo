@@ -1,5 +1,13 @@
 # CardioGuard AI
 
+<p align="center">
+  <img src="assets/cardioguard-logo.svg" alt="CardioGuard AI logo" width="132">
+</p>
+
+<p align="center">
+  <a href="https://bhandkunal02-eng-heart-attactprediction-naviebayes--app-hcqkfp.streamlit.app/"><strong>Open the live CardioGuard AI app</strong></a>
+</p>
+
 An educational, interactive heart-disease classification project built around the repository's existing dataset and Naive Bayes notebook. The Streamlit dashboard demonstrates real model predictions, reproducible evaluation, aggregate data visualization, and responsible-AI limitations.
 
 > **Educational demonstration only — not a medical device or medical advice.** It cannot diagnose heart disease or estimate your personal risk. If you may be having a heart attack, call your local emergency number immediately. Do not wait for this app or a model prediction.
@@ -78,6 +86,9 @@ Tests verify the CSV schema and row count, the exact model/split and saved noteb
 
 ## Deploy on Streamlit Community Cloud
 
+**Live app:** [CardioGuard AI](https://bhandkunal02-eng-heart-attactprediction-naviebayes--app-hcqkfp.streamlit.app/)
+It is currently deployed from the `bhandkunal02-eng-cardioguard-ai` branch with `app.py` as its entry point.
+
 1. Push this project to a GitHub repository that Streamlit Community Cloud can access. Keep `heart.csv` in the repository root; do not upload private health data or secrets.
 2. Sign in at [share.streamlit.io](https://share.streamlit.io/) with GitHub and select **Create app**.
 3. Select the repository and branch, set the **Main file path** to `app.py`, and deploy. Community Cloud installs dependencies from `requirements.txt`.
@@ -91,7 +102,7 @@ For future updates, push commits to the deployed branch; Community Cloud can red
 git push -u origin bhandkunal02-eng-cardioguard-ai
 ```
 
-Then create or update the GitHub repository/Streamlit app as appropriate. This project has not been deployed from this repository, so no public app URL is claimed here.
+Push subsequent changes to the deployed branch to trigger a Streamlit Community Cloud rebuild.
 
 ## Project files
 

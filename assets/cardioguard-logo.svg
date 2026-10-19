@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">CardioGuard AI</title>
+  <rect width="128" height="128" rx="28" fill="#08111f"/>
+  <path d="M64 12 105 27v28c0 27-16 49-41 62C39 104 23 82 23 55V27z" fill="#102538" stroke="#45e0c1" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M64 87 43 67c-12-12 5-30 17-17l4 4 4-4c12-13 29 5 17 17z" fill="#ff8f82"/>
+  <path d="M37 64h15l7-12 10 24 8-12h14" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
