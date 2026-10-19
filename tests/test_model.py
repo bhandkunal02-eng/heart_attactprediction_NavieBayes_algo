@@ -76,6 +76,22 @@ def test_other_category_choices_show_values_without_source_code_suffix():
     assert not app.exception
 
 
+def test_prediction_output_labels_heart_disease_class_probability():
+    from streamlit.testing.v1 import AppTest
+
+    app = AppTest.from_file(Path(__file__).resolve().parents[1] / "app.py").run(timeout=30)
+    app.radio[0].set_value("Try the model").run(timeout=30)
+    app.button[0].click().run(timeout=30)
+    metric_labels = [metric.label for metric in app.metric]
+    assert "Estimated probability · heart disease (class 1)" in metric_labels
+    assert "Estimated probability · no heart disease (class 0)" in metric_labels
+    caption_text = " ".join(caption.value.lower() for caption in app.caption)
+    assert "class 0 means no heart disease recorded" in caption_text
+    assert "class 1 means heart disease recorded" in caption_text
+    assert "not an acute heart-attack probability" in caption_text
+    assert not app.exception
+
+
 def test_prediction_uses_model_native_probabilities(artifacts):
     row = artifacts.dataset.iloc[0]
     values = {column: float(row[column]) for column in FEATURE_COLUMNS}

@@ -201,15 +201,27 @@ def render_prediction(artifacts: ModelArtifacts) -> None:
             return
         st.divider()
         st.markdown("### Model output")
+        class_labels = {
+            0: "No heart disease recorded (class 0)",
+            1: "Heart disease recorded (class 1)",
+        }
         if prediction == 1:
-            st.warning(f"The model assigned this record to **dataset target class {prediction}**.")
+            st.warning(f"The model prediction is **{class_labels[prediction]}**.")
         else:
-            st.success(f"The model assigned this record to **dataset target class {prediction}**.")
+            st.success(f"The model prediction is **{class_labels[prediction]}**.")
         probability_columns = st.columns(2)
+        probability_labels = {
+            0: "Estimated probability · no heart disease (class 0)",
+            1: "Estimated probability · heart disease (class 1)",
+        }
         for column, label in zip(probability_columns, (0, 1)):
             if label in probabilities:
-                column.metric(f"Model probability · class {label}", f"{probabilities[label]:.1%}")
-        st.caption("Target classes are displayed as recorded; no diagnosis or clinical interpretation is implied.")
+                column.metric(probability_labels[label], f"{probabilities[label]:.1%}")
+        st.caption(
+            "Class 0 means no heart disease recorded in the dataset; class 1 means heart disease recorded. "
+            "These are dataset-label probabilities, not an acute heart-attack probability, personal medical risk, "
+            "or a diagnosis."
+        )
 
 
 def render_analytics(artifacts: ModelArtifacts) -> None:

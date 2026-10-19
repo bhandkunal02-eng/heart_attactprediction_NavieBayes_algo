@@ -14,7 +14,7 @@ An educational, interactive heart-disease classification project built around th
 
 ## What the source project actually contains
 
-- `heart.csv`: 303 records, 13 features, and the binary `target` values 0 and 1. Rows are never shown in the explorer; it displays aggregates only.
+- `heart.csv`: 303 records, 13 features, and the binary `target` values 0 (no heart disease recorded) and 1 (heart disease recorded). Rows are never shown in the explorer; it displays aggregates only.
 - `Naive_Bayed_implementaion.ipynb`: fits scikit-learn `GaussianNB` directly on the numeric feature values.
 - The notebook uses `train_test_split(test_size=0.2, random_state=42)` with no stratification. It performs no imputation, scaling, or other feature preprocessing.
 - The notebook's saved holdout outputs are accuracy **0.8689**, precision **0.9000**, and recall **0.8438**. The app independently recalculates these metrics from the same split and model code. ROC-AUC and confusion matrix are also calculated from that held-out set.
@@ -45,7 +45,7 @@ The source dataset uses the standard UCI Cleveland heart-disease sex codes and c
 ## Dashboard
 
 - **Overview:** model and dataset summary, with the medical-use warning.
-- **Try the model:** validated form calling the trained `GaussianNB` estimator and displaying its native class probabilities (not calibrated personal risk).
+- **Try the model:** validated form calling the trained `GaussianNB` estimator and displaying its native class probabilities: class 0 means no heart disease recorded and class 1 means heart disease recorded. These are dataset-label probabilities, not acute heart-attack probabilities or personal medical risk.
 - **Model analytics:** held-out accuracy, precision, recall, ROC-AUC, confusion matrix, and ROC curve, labeled as test-split results.
 - **Dataset explorer:** class counts, individual feature distributions, and aggregate summary statistics only.
 - **About & limitations:** schema, method, and limitations.
